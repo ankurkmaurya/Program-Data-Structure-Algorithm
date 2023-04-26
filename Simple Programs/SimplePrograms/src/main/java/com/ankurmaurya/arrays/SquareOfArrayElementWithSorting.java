@@ -46,9 +46,7 @@ public class SquareOfArrayElementWithSorting {
         System.out.println("Sorted Ascending  : " + dataList);
         System.out.println("Sorted Descending : " + dataList1);
 
-        
-        
-        
+
     }
 
 }
