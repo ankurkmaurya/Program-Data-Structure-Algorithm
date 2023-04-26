@@ -16,16 +16,17 @@ import java.util.stream.IntStream;
  */
 public class SquareOfArrayElementWithSorting {
 
+    
     public static void main(String[] args) {
         System.out.println("Square Array Elements and Sort");
         int[] dataValues = {3, 6, 5, -1, -3, 2, 7, 1, 0};
 
         String dispData = IntStream.of(dataValues).mapToObj(Integer::toString)
-                .collect(Collectors.joining(",", "[", "]"));
+                .collect(Collectors.joining(", ", "[", "]"));
         System.out.println("Data : " + dispData);
 
-        System.out.println("Approach : 1 (No Duplicates, Tree Set)");
-        Set<Integer> dataSet = new TreeSet<>();
+        System.out.println("Approach : 1 (No Duplicates, Tree Set, Descending)");
+        Set<Integer> dataSet = new TreeSet<>((e1, e2) -> e2.compareTo(e1));
         for (int i = 0; i < dataValues.length; i++) {
             dataSet.add(dataValues[i] * dataValues[i]);
         }
@@ -42,9 +43,12 @@ public class SquareOfArrayElementWithSorting {
 
         Collections.sort(dataList);
         Collections.sort(dataList1, (e1, e2) -> e2.compareTo(e1));
-        System.out.println("Ascending Sorted   : " + dataList);
-        System.out.println("Descending Sorted  : " + dataList1);
+        System.out.println("Sorted Ascending  : " + dataList);
+        System.out.println("Sorted Descending : " + dataList1);
 
+        
+        
+        
     }
 
 }
