@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 
 /**
  *
- * @author Ankur.Mourya
+ * @author Ankur Maurya
  * 
  */
 public class SquareOfArrayElementWithSorting {
