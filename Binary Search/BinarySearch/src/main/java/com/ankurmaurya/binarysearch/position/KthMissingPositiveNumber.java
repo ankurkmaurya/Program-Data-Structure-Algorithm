@@ -1,4 +1,4 @@
-package com.ankurmaurya.binarysearch.missing;
+package com.ankurmaurya.binarysearch.position;
 
 import com.ankurmaurya.binarysearch.utility.Utilities;
 
@@ -32,6 +32,15 @@ import com.ankurmaurya.binarysearch.utility.Utilities;
  * Follow up:
  * Could you solve this problem in less than O(n) complexity?
  * 
+ * 
+ * Bruteforce :
+ * Runtime Complexity : O(n)
+ * Space Complexity   : O(n)
+ * 
+ * 
+ * Optimized :
+ * Runtime Complexity : O(nlogn)
+ * Space Complexity   : O(1)
  * 
  */
 
