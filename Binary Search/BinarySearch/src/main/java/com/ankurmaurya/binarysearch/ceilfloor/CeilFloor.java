@@ -12,17 +12,26 @@ public class CeilFloor {
 		int target1 = 6;
 		boolean returnTargetIfExists1 = false;
 		System.out.println("Floor of target '" + target1 + "' is : " + (Utilities.findFloor(elements, target1, returnTargetIfExists1)));
+		System.out.println("Floor Index of target '" + target1 + "' is : " + (Utilities.findFloorIndex(elements, target1, returnTargetIfExists1)));
+		System.out.println();
 		System.out.println("Ceil of target '" + target1 + "' is : " + (Utilities.findCeil(elements, target1, returnTargetIfExists1)));
+		System.out.println("Ceil Index of target '" + target1 + "' is : " + (Utilities.findCeilIndex(elements, target1, returnTargetIfExists1)));
 		System.out.println();
 		
 		int target2 = 7;
 		boolean returnTargetIfExists2 = false;
 		boolean returnTargetIfExists21 = true;
 		System.out.println("Floor of target '" + target2 + "' is : " + (Utilities.findFloor(elements, target2, returnTargetIfExists2)));
+		System.out.println("Floor Index of target '" + target2 + "' is : " + (Utilities.findFloorIndex(elements, target2, returnTargetIfExists2)));
+		System.out.println();
 		System.out.println("Ceil of target '" + target2 + "' is : " + (Utilities.findCeil(elements, target2, returnTargetIfExists2)));
+		System.out.println("Ceil Index of target '" + target2 + "' is : " + (Utilities.findCeilIndex(elements, target2, returnTargetIfExists2)));
 		System.out.println();
 		System.out.println("Floor of target '" + target2 + "' is : " + (Utilities.findFloor(elements, target2, returnTargetIfExists21)));
+		System.out.println("Floor Index of target '" + target2 + "' is : " + (Utilities.findFloorIndex(elements, target2, returnTargetIfExists21)));
+		System.out.println();
 		System.out.println("Ceil of target '" + target2 + "' is : " + (Utilities.findCeil(elements, target2, returnTargetIfExists21)));
+		System.out.println("Ceil Index of target '" + target2 + "' is : " + (Utilities.findCeilIndex(elements, target2, returnTargetIfExists21)));
 		System.out.println();
 		
 		int target3 = 0;

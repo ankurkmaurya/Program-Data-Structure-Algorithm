@@ -1,8 +1,11 @@
 package com.ankurmaurya.binarysearch.utility;
 
+
+
+
+
 public class Utilities {
 
-	
 	public static void printElements(int[] elements) {
 		System.out.print("[");
 		for(int i=0; i<elements.length; i++) {
@@ -14,6 +17,7 @@ public class Utilities {
 		}
 		System.out.println("]");
 	}
+	
 	
 	public static void printElements(int[][] elements) {
 		System.out.print("[");
@@ -36,6 +40,7 @@ public class Utilities {
 		System.out.println("]");
 	}
 	
+	
 	public static int findMax(int num1, int num2) {
 		if(num1>num2) {
 			return num1;
@@ -43,6 +48,7 @@ public class Utilities {
 			return num2;
 		}
 	}
+	
 	
 	public static int findMin(int num1, int num2) {
 		if(num1<num2) {
@@ -52,7 +58,9 @@ public class Utilities {
 		}
 	}
 	
+	
 	public static int findCeilIndex(int[] elements, int target, boolean returnTargetIndexIfExists) {
+		int ceilIndexIfTargetExists = -1;
 		int ceilOfTargetIndex = -1;
 		if(elements.length==0) {
 			return ceilOfTargetIndex;
@@ -65,11 +73,8 @@ public class Utilities {
 			int mid = start + (end - start)/2;
 			
 			if(elements[mid]==target) {
-				if(returnTargetIndexIfExists) {
-					return mid;
-				} else {
-					start = mid+1;
-				}
+				ceilIndexIfTargetExists = mid;
+				start = mid+1;
 			}
 			else if(elements[mid]>target) {
 				end = mid-1;
@@ -79,9 +84,14 @@ public class Utilities {
 				start = mid+1;
 			}
 		}
-		return ceilOfTargetIndex;
+		
+		if(returnTargetIndexIfExists) {
+			return ceilIndexIfTargetExists;
+		} else {
+			return ceilOfTargetIndex;
+		}
 	}
-	
+
 	
 	public static int findCeil(int[] elements, int target, boolean returnTargetIfExists) {
 		int ceilOfTarget = -1;
@@ -114,8 +124,8 @@ public class Utilities {
 	}
 	
 	
-	public static int findFloorIndex(int[] elements, int target, boolean returnTargetIndexIfExists) {
-    	int floorOfTargetIndex = -1;
+	public static int findFloorIndex(int[] elements, int target, boolean targetIndexCanBeFloor) {
+		int floorOfTargetIndex = -1;
 		if(elements.length==0) {
 			return floorOfTargetIndex;
 		}
@@ -126,12 +136,9 @@ public class Utilities {
 		while(start<=end) {
 			int mid = start + (end - start)/2;
 			
-			if(elements[mid]==target) {
-				if(returnTargetIndexIfExists) {
-					return mid;
-				} else {
-					end = mid-1;
-				}
+			if(elements[mid]==target && targetIndexCanBeFloor) {
+				floorOfTargetIndex = mid;
+				end = mid-1;
 			}
 			else if(elements[mid]<target) {
 				start = mid+1;
@@ -139,6 +146,32 @@ public class Utilities {
 			}
 			else {
 				end = mid-1;
+			}
+		}
+		return floorOfTargetIndex;
+	}
+	
+	public static int findFloorIndex(int[] elements, int start, int end, int target, boolean targetIndexCanBeFloor) {
+		int floorOfTargetIndex = -1;
+		if(elements.length==0) {
+			return floorOfTargetIndex;
+		}
+		
+		int low = start;
+		int high = end;
+		while(low <= high) {
+			int mid = low + (high - low)/2;
+			
+			if(elements[mid]==target && targetIndexCanBeFloor) {
+				floorOfTargetIndex = mid;
+				high = mid-1;
+			}
+			else if(elements[mid]<target) {
+				low = mid+1;
+				floorOfTargetIndex = mid;
+			}
+			else {
+				high = mid-1;
 			}
 		}
 		return floorOfTargetIndex;
@@ -176,5 +209,75 @@ public class Utilities {
 	}
 	
 	
+	public static int getMinimumNumber(int[] nums, boolean returnIndex) {
+		int minIndex = -1;
+		int minNumber = Integer.MAX_VALUE;
+		
+		int start = 0;
+		int end = nums.length-1;
+		while(start<=end) {
+			int mid = start + (end - start)/2;
+			
+			if(nums[mid] == minNumber) {
+				end = mid - 1;
+				minNumber = nums[mid];
+				minIndex = mid;
+			}
+			else if(nums[mid] < minNumber) {
+			   end = mid - 1;
+			   minNumber = nums[mid];
+			   minIndex = mid;
+			} 
+			else {
+				start = mid + 1;
+			}
+			//System.out.println("Number -> " + minNumber + " : Index -> " + minIndex);
+		}
+		
+		if(returnIndex) {
+			return minIndex;
+		} else {
+			return minNumber;
+		}
+	}
+	
+	
+	public static int getMaximumNumber(int[] nums, boolean returnIndex) {
+		int maxIndex = -1;
+		int maxNumber = Integer.MIN_VALUE;
+		
+		int start = 0;
+		int end = nums.length-1;
+		while(start<=end) {
+			int mid = start + (end - start)/2;
+			
+			if(nums[mid] == maxNumber) {
+				start = mid + 1;
+				maxNumber = nums[mid];
+				maxIndex = mid;
+			}
+			else if(nums[mid] > maxNumber) {
+			   start = mid + 1;
+			   maxNumber = nums[mid];
+			   maxIndex = mid;
+			} 
+			else {
+				end = mid - 1;
+			}
+			//System.out.println("Number -> " + maxNumber + " : Index -> " + maxIndex);
+		}
+		
+		if(returnIndex) {
+			return maxIndex;
+		} else {
+			return maxNumber;
+		}
+	}
+	
+	
+	
+	
 	
 }
+
+
