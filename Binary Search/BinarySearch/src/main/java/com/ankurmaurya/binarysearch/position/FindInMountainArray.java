@@ -155,6 +155,10 @@ public class FindInMountainArray {
     	}
     	
     	int leftTargetIndex = findFloorIndexOfTargetInLeft(target, 0, mountainPeakIndex, mountainArr);
+    	if(leftTargetIndex != -1) {
+            return leftTargetIndex;
+        }
+    	
     	int rightTargetIndex = findFloorIndexOfTargetInRight(target, mountainPeakIndex, mountainLength-1, mountainArr);
     	
     	if(leftTargetIndex == -1) {
