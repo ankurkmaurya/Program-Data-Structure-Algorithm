@@ -53,10 +53,10 @@ import com.ankurmaurya.binarysearch.utility.Utilities;
  * 
  * 
  * Constraints:
- * n == nums.length
- * m == queries.length
- * 1 <= n, m <= 10power5
- * 1 <= nums[i], queries[i] <= 10power9
+ *  n == nums.length
+ *  m == queries.length
+ *  1 <= n, m <= 10power5
+ *  1 <= nums[i], queries[i] <= 10power9
  * 
  * 
  * 
