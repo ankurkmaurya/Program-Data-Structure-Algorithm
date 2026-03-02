@@ -6,6 +6,7 @@ import java.util.Comparator;
 import com.ankurmaurya.binarysearch.utility.Utilities;
 
 /*
+ * 
  * Minimum Cost to Make Array Equal
  * 
  * Type : Hard
@@ -59,7 +60,7 @@ import com.ankurmaurya.binarysearch.utility.Utilities;
  * 
  * 
  * First Optimization: 
- * --- Runtime 19ms Beats only 20.00%
+ * --- Runtime 19ms Beats only 20.00% [Sort + Weighted Median]
  * In this the optimization strategy was with respect to Weighted Median.
  * The weighted median is the smallest value x such that: ∑wi>=1/2​∑w 
  * Means: The smallest value in ordered data for which the total weight accumulated up to that 
@@ -78,7 +79,7 @@ import com.ankurmaurya.binarysearch.utility.Utilities;
  * 
  * 
  * Second Optimization: 
- * --- Runtime 11ms Beats only 90.70%
+ * --- Runtime 11ms Beats only 90.70% [Binary Search : Binary Search on Answer]
  * We can find the MAX and MIN of the array as the conversion will be performed on these two extreme points,
  * now we can perform Binary Search on numbers lying between these two end points and as per observation the 
  * target number giving min cost will be lying between these end point and we can perform selection based on
@@ -93,7 +94,7 @@ import com.ankurmaurya.binarysearch.utility.Utilities;
  */
 
 
-public class MinimumCostToMakeArrayEqual {
+public class MinCostToMakeArrayEqual {
 
 	public static void main(String[] args) {
 
@@ -108,6 +109,7 @@ public class MinimumCostToMakeArrayEqual {
 		 System.out.println("Min Cost to make the array equal '" + minCost1 + "'");
 		 System.out.println();
 		 
+		 
 		 int[] nums2 = {2,2,2,2,2};
 		 int[] cost2 = {4,2,8,1,3};
 		 System.out.print("Numbers : ");
@@ -118,7 +120,7 @@ public class MinimumCostToMakeArrayEqual {
 		 System.out.println("Min Cost to make the array equal '" + minCost2 + "'");
 		 System.out.println();
 		 
-		
+		 
 		 int[] nums3 = {735103,366367,132236,133334,808160,113001,49051,735598,686615,665317,999793,426087,587000,649989,509946,743518};
 		 int[] cost3 = {724182,447415,723725,902336,600863,287644,13836,665183,448859,917248,397790,898215,790754,320604,468575,825614};
 		 System.out.print("Numbers : ");
@@ -157,7 +159,6 @@ public class MinimumCostToMakeArrayEqual {
         		long diff;
         		if(nums[i]<nums[j]) {
         			diff = (long)nums[j] - nums[i];
-        			
         		} else {
         			diff = (long)nums[i] - nums[j];
         		}
