@@ -1,4 +1,9 @@
-Simple Programs/SimplePrograms/target
-Simple Programs/SimplePrograms/.settings
-Binary Search/BinarySearch/target
-Binary Search/BinarySearch/.settings
+*.launch
+.project
+.classpath
+.settings/
+
+Simple Programs/SimplePrograms/target/
+Simple Programs/SimplePrograms/.settings/
+Binary Search/BinarySearch/target/
+Binary Search/BinarySearch/.settings/
