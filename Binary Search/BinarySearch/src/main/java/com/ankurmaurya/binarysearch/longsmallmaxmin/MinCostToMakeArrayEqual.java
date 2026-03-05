@@ -259,6 +259,9 @@ public class MinCostToMakeArrayEqual {
         
         return minCost;
     }
+    
+    
+    
     public static long getTotalNumsChangingCost(int[] nums, int[] cost, int targetNum) {
     	long changingCost = 0L;
         for(int i=0; i<nums.length; i++) {
