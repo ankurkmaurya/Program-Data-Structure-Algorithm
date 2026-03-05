@@ -20,9 +20,6 @@ public class BinarySearch {
 	 */
 	
 	
-	
-	
-	
 	public static void main(String[] args) {
 		int[] elements = {0,1,3,5,7,8,9,12,23,34,45};
 		
