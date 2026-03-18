@@ -4,6 +4,7 @@ import com.ankurmaurya.binarysearch.utility.Utilities;
 
 public class BinarySearch {
 	
+	
 	/*
 	 * 
 	 * 
@@ -61,9 +62,8 @@ public class BinarySearch {
 		return -1;
 	}
 	
+	
 }
-
-
 
 
 
