@@ -1,5 +1,6 @@
 package com.ankurmaurya.dp;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,8 +34,8 @@ import com.ankurmaurya.utils.Utilities;
  * 
  * 
  * Constraints:
- * 1 <= power.length <= 105
- * 1 <= power[i] <= 109
+ * 1 <= power.length <= 10 power 5
+ * 1 <= power[i] <= 10 power 9
  * 
  * 
  * 
@@ -50,25 +51,126 @@ public class MaximumTotalDamageWithSpellCastingFailed {
 	
 	
 	public static void main(String[] args) {
-		int[] power1 = {1,1,3,4};
-		int[] power2 = {7,1,6,6};
-		int[] power3 = {7,1,6,3}; //11  //exp 10
-		
-		
-		Utilities.printElements(power1);
-		long maxPossibleDamage1 = maximumTotalDamageBruteForce(power1);
-		System.out.println("The possible maximum damage is'" + maxPossibleDamage1 + "'");
-		
-		Utilities.printElements(power2);
-		long maxPossibleDamage2 = maximumTotalDamageBruteForce(power2);
-		System.out.println("The possible maximum damage is'" + maxPossibleDamage2 + "'");
-		
-		Utilities.printElements(power3);
-		long maxPossibleDamage3 = maximumTotalDamageBruteForce(power3);
-		System.out.println("The possible maximum damage is'" + maxPossibleDamage3 + "'");
-		
-		
+		//maxDamageSolution(new int[] {1,1,3,4}, 6);
+		maxDamageSolution(new int[] {7,1,6,6}, 13);
+		//maxDamageSolution(new int[] {7,1,6,3}, 10);
 	}
+	
+	
+	
+	public static void maxDamageSolution(int[] power, int expected) {
+		Utilities.printElements(power);
+		long maxPossibleDamage = maximumTotalDamage(power);
+		System.out.println("The possible maximum damage is'" + maxPossibleDamage + "', Assert : "+(maxPossibleDamage==expected));
+	}
+	
+	
+	 public static long maximumTotalDamage(int[] power) {
+		 Arrays.sort(power);
+		 
+		 long maxDamage = 0;
+		 int[] powerSum = new int[power.length];
+		 powerSum[0] = power[0];
+		 for(int i=1; i<powerSum.length; i++) {
+			 powerSum[i] = power[i] + powerSum[i-1];
+		 }
+		 
+		 
+		 for(int pow : power) {
+			 int pM3 = pow-3;
+			 int pP3 = pow+3;
+			 
+			 int possibleLowestPowerIndex = getTargetFloorIndex(power, pM3);
+			 int possibleHighestPowerIndex = getTargetCeilIndex(power, pP3);
+
+			 int lowerTotalDamage = possibleLowestPowerIndex==-1?0:powerSum[possibleLowestPowerIndex];
+			 int upperTotalDamage = possibleHighestPowerIndex==-1?0:
+				 (powerSum[powerSum.length-1]-powerSum[possibleHighestPowerIndex-1]);
+			 
+			 int totalDamage = lowerTotalDamage+upperTotalDamage;	 
+			 maxDamage = Math.max(maxDamage, totalDamage);
+		 }
+		 
+		 
+		 /*
+		 int low=0;
+		 int high=power.length-1;
+		 while(low<=high) {
+			 int mid = low + (high - low)/2;
+			 //int pM1 = power[mid]-1;
+    		 int pM3 = power[mid]-3;
+    		 //int pP1 = power[mid]+1;
+    		 int pP3 = power[mid]+3;
+			 
+			 int possibleLowestPowerIndex = getTargetFloorIndex(power, pM3);
+			 int possibleHighestPowerIndex = getTargetFloorIndex(power, pP3);
+			 
+			
+			 
+			 
+			 if(possibleLowestPowerIndex == possibleHighestPowerIndex) {
+				 maxDamage = Math.max(maxDamage, possibleHighestPowerIndex);
+				 break;
+			 }
+			 else if(possibleLowestPowerIndex>possibleHighestPowerIndex) {
+				 maxDamage = Math.max(maxDamage, possibleLowestPowerIndex);
+				 high = mid-1;
+			 } else {
+				 maxDamage = Math.max(maxDamage, possibleHighestPowerIndex);
+				 low = mid+1;
+			 }
+		 }
+		 */
+		 return maxDamage;
+	 }
+	 
+	 
+	 
+	 public static int getTargetFloorIndex(int[] power, int target) { 
+		 int floorIndex = -1;
+		 
+		 int low = 0;
+		 int high = power.length-1;
+		 while(low<=high) {
+			 int mid = low + (high - low)/2;
+			 
+			 if(power[mid]==target) {
+				 floorIndex = mid;
+				 break;
+			 }
+			 else if(power[mid]<target) {
+				 floorIndex = mid;
+				 low = mid +1;
+			 } else {
+				 high = mid-1;
+			 }
+		 }
+		 return floorIndex;
+	 }
+	 
+	 
+	 public static int getTargetCeilIndex(int[] power, int target) { 
+		 int ceilIndex = -1;
+		 
+		 int low = 0;
+		 int high = power.length-1;
+		 while(low<=high) {
+			 int mid = low + (high - low)/2;
+			 
+			 if(power[mid]==target) {
+				 ceilIndex = mid;
+				 break;
+			 }
+			 else if(power[mid]<target) {
+				 low = mid +1;
+			 } else {
+				 ceilIndex = mid;
+				 high = mid-1;
+			 }
+		 }
+		 return ceilIndex;
+	 }
+	 
 	
 	
 	
