@@ -1,6 +1,7 @@
 package com.ankurmaurya.dp;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,16 +53,16 @@ public class MaximumTotalDamageWithSpellCastingFailed {
 	
 	public static void main(String[] args) {
 		//maxDamageSolution(new int[] {1,1,3,4}, 6);
-		maxDamageSolution(new int[] {7,1,6,6}, 13);
-		//maxDamageSolution(new int[] {7,1,6,3}, 10);
+		//maxDamageSolution(new int[] {7,1,6,6}, 13);
+		maxDamageSolution(new int[] {7,1,6,3}, 10);
 	}
 	
 	
 	
 	public static void maxDamageSolution(int[] power, int expected) {
 		Utilities.printElements(power);
-		long maxPossibleDamage = maximumTotalDamage(power);
-		System.out.println("The possible maximum damage is'" + maxPossibleDamage + "', Assert : "+(maxPossibleDamage==expected));
+		long maxPossibleDamage = maximumTotalDamageBruteForce(power);
+		System.out.println("The possible maximum damage is'" + maxPossibleDamage + "', Assert : " + (maxPossibleDamage==expected)  + "', Required : " + expected);
 	}
 	
 	
@@ -188,8 +189,30 @@ public class MaximumTotalDamageWithSpellCastingFailed {
     		}
     	}
     	
-    	for(int p : power) {
+    	Arrays.sort(power);
+    	long maxTotalDamage = 0;
+    	for(int index = power.length-1; index >=0; index--) {
+    		int p = power[index];
     		long maxDamageWithp = totalSpellsDamage;
+    		
+    		for(int i=-2; i<3; i++) {
+    			if(i==0) {
+    				continue;
+    			}
+    			
+    			if(availableSpells.containsKey(p+i)) {
+    				maxDamageWithp -= (availableSpells.get(p+i)*(p+i));
+    			}
+    		}
+    		
+    		if(maxDamageWithp > maxTotalDamage) {
+				maxTotalDamage = maxDamageWithp;
+			}
+    		
+    		
+    		
+    		
+    		/*
     		int pM1 = p-1;
     		int pM2 = p-2;
     		int pP1 = p+1;
@@ -213,6 +236,8 @@ public class MaximumTotalDamageWithSpellCastingFailed {
     		}
     		availableSpells.remove(p);
     		totalSpellsDamage -= p;
+    		*/
+    		//totalSpellsDamage -= p;
     	}
     	
     	return maxDamage;
